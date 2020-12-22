@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="suite1" duration-ms="82" started-at="2020-11-26T05:56:01Z" finished-at="2020-11-26T05:56:01Z">
+    <groups>
+    </groups>
+    <test name="testngauto" duration-ms="82" started-at="2020-11-26T05:56:01Z" finished-at="2020-11-26T05:56:01Z">
+      <class name="com.tingzi.TestDemo">
+        <test-method status="PASS" signature="testadd()[pri:0, instance:com.tingzi.TestDemo@282ba1e]" name="testadd" duration-ms="21" started-at="2020-11-26T13:56:01Z" finished-at="2020-11-26T13:56:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testadd -->
+      </class> <!-- com.tingzi.TestDemo -->
+    </test> <!-- testngauto -->
+  </suite> <!-- suite1 -->
+</testng-results>
