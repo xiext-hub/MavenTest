@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="suite" parallel="false">
+    <test name="login">
+        <classes>
+            <class name="com.chuangtai.testng.suite.suiteConfig"/>
+            <class name="com.chuangtai.testng.suite.LoginTest"/>
+        </classes>
+    </test>
+
+    <test name="pay">
+        <classes>
+            <class name="com.chuangtai.testng.suite.suiteConfig"/>
+            <class name="com.chuangtai.testng.suite.payTest"/>
+        </classes>
+    </test>
+
+</suite>

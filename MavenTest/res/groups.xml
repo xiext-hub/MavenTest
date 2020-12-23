@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="groups" parallel="false">
+    <test name="run_all">  <!--运行全部的组-->
+        <classes>
+            <class name="com.chuangtai.testng.groups.GroupsOnClass1"/>
+            <class name="com.chuangtai.testng.groups.GroupsOnClass2"/>
+            <class name="com.chuangtai.testng.groups.GroupsOnClass3"/>
+        </classes>
+    </test>
+
+
+    <test name="onlyrun_student">  <!--运行部分的组-->
+        <groups>
+            <run>
+                <!--     <exclude name="student"></exclude>   运行除student以外的组 -->
+                <include name="teacher"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.chuangtai.testng.groups.GroupsOnClass1"/>
+            <class name="com.chuangtai.testng.groups.GroupsOnClass2"/>
+            <class name="com.chuangtai.testng.groups.GroupsOnClass3"/>
+        </classes>
+    </test>
+
+</suite>
