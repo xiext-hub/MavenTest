@@ -1,0 +1,22 @@
+[
+  {
+    "description": "模拟一个携带http请求头的post请求",
+    "request": {
+      "uri": "/post/with/header",
+      "method": "post",
+      "headers": {
+        "content-type": "application/json"
+      },
+      "json": {
+        "name": "wanglaosi",
+        "sex": "woman"
+      }
+    },
+    "response": {
+      "json": {
+        "massage": "success",
+        "status": "1"
+      }
+    }
+  }
+]

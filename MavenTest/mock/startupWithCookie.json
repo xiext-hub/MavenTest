@@ -1,0 +1,35 @@
+[
+  {
+    "description": "这是一个携带cookies信息的get请求",
+    "request": {
+      "uri": "/get/with/cookie",
+      "method": "get",
+      "cookies": {
+        "login": "true"
+      }
+    },
+    "response": {
+      "text": "这是一个需要携带cookie才能访问的get请求"
+    }
+  },{
+  "description": "这是一个携带cookies信息的post请求",
+  "request": {
+    "uri": "/post/with/cookie",
+    "method": "post",
+    "cookies": {
+      "login": "true"
+    },
+    "json": {
+      "name": "zhangsan",
+      "age": "18"
+    }
+  },
+  "response": {
+    "status": "200",
+    "json": {
+      "massage": "success",
+      "status": "1"
+    }
+  }
+}
+]
