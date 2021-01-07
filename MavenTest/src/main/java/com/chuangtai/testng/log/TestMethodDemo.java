@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
-
+//此方法   执行res里面的testng.xml
 //断言和log的使用
 public class TestMethodDemo {
     @Test

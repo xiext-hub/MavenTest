@@ -111,8 +111,6 @@ public class ExtentTestNGIReportLister implements IReporter{
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
         // 设置静态文件的DNS
         htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
-        //怎么样解决cdn.rawgit.com访问不了的情况
-        htmlReporter.config().setResourceCDN(ResourceCDN.EXTENTREPORTS);
         htmlReporter.config().setDocumentTitle("API接口自动化测试报告");
         htmlReporter.config().setReportName("API接口自动化测试报告");
         htmlReporter.config().setChartVisibilityOnOpen(true);

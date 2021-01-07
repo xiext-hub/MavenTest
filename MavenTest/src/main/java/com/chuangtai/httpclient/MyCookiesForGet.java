@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
 public class MyCookiesForGet {
     private String url;
     private ResourceBundle bundle;
-
     private CookieStore store; //用来存取cookies信息的变量
     private HttpResponse response;//用来存放响应内容的变量
 
