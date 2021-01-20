@@ -1,2 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="E:/MavenTest/src/test/java"><classes/></test></suite>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="这是接口测试套件">
+    <test name="这是接口测试模块">
+        <classes>
+            <class name="com.tingzi.test.Pos_Test">
+                <methods>
+                <!--    <include name="TestPos_Login"></include>  -->
+                    <include name="testArrive"></include>
+                    <include name="testqueryBerthByPark"></include>
+                </methods>
+            </class>
+            <class name="com.tingzi.test.Spms_Test">
+                <methods>
+                    <include name="testGetCookie"></include>
+                    <include name="testGetCtiyItems"></include>
+                    <include name="testSavePack"></include>
+                    <include name="testSaveBowei"></include>
+                </methods>
+            </class>
+
+
+        </classes>
+    </test>
+
+    <!--配置extentreport的监听器-->
+    <listeners>
+        <!-- <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"/> 自带的监听器类界面样式很难看，没有css样式，需要重写监听类-->
+        <listener class-name="com.chuangtai.testng.log.ExtentTestNGIReportLister"/>
+    </listeners>
+</suite>

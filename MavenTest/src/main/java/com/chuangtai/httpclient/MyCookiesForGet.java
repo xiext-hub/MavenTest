@@ -37,8 +37,8 @@ public class MyCookiesForGet {
         String result;
         String methodurl = bundle.getString("getCookies.url"); //从配置文件里面读取方法名
         String testUrl = this.url + methodurl;//拼接URL
-
         //get请求
+
         HttpGet get = new HttpGet(testUrl);
         DefaultHttpClient client = new DefaultHttpClient();
         //执行get方法的

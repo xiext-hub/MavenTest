@@ -10,6 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * @Author xiexiaoting
+ * @Date 2021/1/11 14:00
+ * @Version 1.0
+ */
+
+
+
 // JSON格式转换工具类
 
 public class GsonUtil <T, Y> {
@@ -60,7 +69,7 @@ public class GsonUtil <T, Y> {
     public static List<?> jsonToList(String jsonStr){
         List<?> objList= null;
         if (gson!=null){
-            Type type= new com.google.gson.reflect.TypeToken<List<?>>(){}.getType();
+            Type type= new TypeToken<List<?>>(){}.getType();
             objList=gson.fromJson(jsonStr,type);
         }
         return objList;
@@ -91,7 +100,7 @@ public class GsonUtil <T, Y> {
     public  static Map<?,?> jsonToMap(String jsonStr){
         Map<?,?> objMap=null;
         if (gson!=null){
-         Type type= new com.google.gson.reflect.TypeToken<Map<?,?>>(){}.getType();
+         Type type= new TypeToken<Map<?,?>>(){}.getType();
             objMap=gson.fromJson(jsonStr,type);
         }
         return objMap;
