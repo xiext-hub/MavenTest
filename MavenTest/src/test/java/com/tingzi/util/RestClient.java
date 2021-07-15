@@ -7,10 +7,7 @@ package com.tingzi.util;
  */
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.http.Consts;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpStatus;
-import org.apache.http.ParseException;
+import org.apache.http.*;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -22,6 +19,7 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
@@ -211,16 +209,15 @@ public class RestClient {
     /**
      * 封装form表单格式的post方法
      * @param paramsMap 请求参数
-     * @param headerMap 请求头
      * @return 返回响应对象
      * @throws ClientProtocolException
      * @throws IOException
      */
 
-    public CloseableHttpResponse post(String url, Map<String, Object> paramsMap, HashMap<String,String> headerMap) throws ClientProtocolException, IOException {
+    public CloseableHttpResponse postFormGetCookie(String url, Map<String, Object> paramsMap) throws ClientProtocolException, IOException {
         //创建一个Httppost的请求对象
         HttpPost httppost = new HttpPost(url);
-
+        httppost.addHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         Object valueClass =null;
 
         //获取paramsMap中的value的class，用于判断value的类型
@@ -265,10 +262,9 @@ public class RestClient {
         store = new BasicCookieStore();
         httpclient = HttpClients.custom().setDefaultCookieStore(store).build();
         //加载请求头到httppost对象
-        for (Map.Entry<String, String> entry : headerMap.entrySet()) {
-            httppost.addHeader(entry.getKey(), entry.getValue());
-        }
-
+     //   for (Map.Entry<String, String> entry : headerMap.entrySet()) {
+        //    httppost.addHeader(entry.getKey(), entry.getValue());
+      //  }
         //发送post请求
         CloseableHttpResponse httpResponse = httpclient.execute(httppost);
         // 读取cookie信息
@@ -284,19 +280,18 @@ public class RestClient {
     /**
      * 封装form表单格式带cookies信息的post方法
      * @param paramsMap 请求参数
-     * @param headerMap 请求头
-     * @param cookieList cookieList,存放多个cookies信息
      * @return 返回响应对象
      * @throws ClientProtocolException
      * @throws IOException
      */
 
-    public CloseableHttpResponse post(String url, Map<String, Object> paramsMap,
-                                      HashMap<String,String> headerMap, ArrayList cookieList)
+    public CloseableHttpResponse postFormSetCookie(String url, Map<String, Object> paramsMap)
             throws ClientProtocolException, IOException {
         //创建一个Httppost的请求对象
         HttpPost httppost = new HttpPost(url);
-
+        httppost.addHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+        DefaultHttpClient httpclient = new DefaultHttpClient();
+        httpclient.setCookieStore(this.store);//设置cookies信息
         Object valueClass =null;
 
         //获取paramsMap中的value的class，用于判断value的类型
@@ -336,16 +331,16 @@ public class RestClient {
             System.out.println("执行到了普通表单的请求");
         }
         // 设置cookies信息
-        store = new BasicCookieStore();
-        for (Object x:
-                cookieList) {
-            store.addCookie((Cookie) x);
-        }
-        CloseableHttpClient httpclient = HttpClients.custom().setDefaultCookieStore(store).build();
+     //   store = new BasicCookieStore();
+       // for (Object x:
+        //        cookieList) {
+        //    store.addCookie((Cookie) x);
+       // }
+       // CloseableHttpClient httpclient = HttpClients.custom().setDefaultCookieStore(store).build();
         //加载请求头到httppost对象
-        for (Map.Entry<String, String> entry : headerMap.entrySet()) {
-            httppost.addHeader(entry.getKey(), entry.getValue());
-        }
+       // for (Map.Entry<String, String> entry : headerMap.entrySet()) {
+         //   httppost.addHeader(entry.getKey(), entry.getValue());
+       // }
 
         //发送post请求
         CloseableHttpResponse httpResponse = httpclient.execute(httppost);
@@ -362,7 +357,7 @@ public class RestClient {
      * @throws IOException
      */
 
-    public CloseableHttpResponse post(String url, String entityString, HashMap<String,String> headerMap)
+    public CloseableHttpResponse postJsonGetCookie(String url, String entityString, HashMap<String,String> headerMap)
             throws ClientProtocolException, IOException{
         //创建一个可关闭的HttpClient对象
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -402,7 +397,7 @@ public class RestClient {
      * @throws IOException
      */
 
-    public CloseableHttpResponse post(String url, String entityString, HashMap<String,String> headerMap, ArrayList cookieList) throws ClientProtocolException, IOException{
+    public CloseableHttpResponse postJsonSetCookie(String url, String entityString, HashMap<String,String> headerMap, ArrayList cookieList) throws ClientProtocolException, IOException{
         // 设置cookies信息
         store = new BasicCookieStore();
         for (Object x:
@@ -423,6 +418,24 @@ public class RestClient {
         //发送post请求
         CloseableHttpResponse httpResponse = httpclient.execute(httppost);
         return httpResponse;
+    }
+
+
+    /**
+     * HTTP body is null
+     * @return
+     * @throws IOException
+     */
+    public CloseableHttpResponse post(String url) throws IOException {
+        DefaultHttpClient client = new DefaultHttpClient();
+        client.setCookieStore(this.store);//设置cookies信息
+        //创建一个Httppost的请求对象
+        HttpPost httppost = new HttpPost(url);
+        httppost.addHeader("Content-Type", "application/json;charset=UTF-8");
+        CloseableHttpResponse response =null;
+        response = client.execute(httppost);
+        return response;
+
     }
 
     /**
@@ -602,5 +615,9 @@ public class RestClient {
         System.out.println("responseJson:" + responseJson);
         return responseJson;
     }
+
+
+
+
 
 }
